@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
-    base('/my-site/'), // <--- Bu satırı tam olarak bu şekilde ekleyin
+    base('/'), // <--- Bu satırı tam olarak bu şekilde ekleyin
   ],
 })
