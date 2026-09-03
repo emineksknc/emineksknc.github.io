@@ -32,7 +32,10 @@
     }
 
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 78% 4%, rgba(79, 209, 197, .08), transparent 28%),
+        radial-gradient(circle at 22% 70%, rgba(232, 163, 61, .05), transparent 30%),
+        var(--bg);
       color: var(--text);
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
@@ -63,10 +66,13 @@
       width: 240px;
       flex-shrink: 0;
       border-right: 1px solid var(--line);
+      background: rgba(15, 19, 25, .82);
+      backdrop-filter: blur(14px);
       padding: 32px 24px;
-      position: sticky;
+      position: fixed;
       top: 0;
       height: 100vh;
+      left: 0;
       display: flex;
       flex-direction: column;
     }
@@ -120,6 +126,7 @@
     nav a:hover {
       background: var(--surface);
       color: var(--text);
+      transform: translateX(3px);
     }
 
     nav a .dot {
@@ -142,6 +149,159 @@
       border-top: 1px solid var(--line);
     }
 
+    .useful-links {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      margin-top: 18px;
+    }
+
+    .hero .useful-links {
+      position: fixed;
+      right: 32px;
+      top: 32px;
+      bottom: 32px;
+      width: 260px;
+      margin-top: 0;
+      padding: 0;
+      border-top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    @media (max-width: 1200px) and (min-width: 861px) {
+      .hero .useful-links {
+        right: 20px;
+        width: 220px;
+      }
+    }
+
+    .useful-links-title {
+      color: var(--teal);
+      font-family: 'JetBrains Mono';
+      font-size: 10px;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .useful-link-card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      margin-bottom: 7px;
+      padding: 9px 10px;
+      transition: .15s;
+    }
+
+    .useful-link-card:hover {
+      background: var(--surface-hi);
+      border-color: var(--teal);
+      transform: translateX(2px);
+    }
+
+    .useful-link-name {
+      color: var(--text);
+      display: block;
+      font-family: 'Space Grotesk';
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .useful-link-meta {
+      color: var(--muted);
+      display: block;
+      font-family: 'JetBrains Mono';
+      font-size: 9px;
+    }
+
+    .useful-link-status {
+      color: var(--amber);
+    }
+
+    .research-links {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+
+    .research-source {
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+    }
+
+    .research-source:last-of-type {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .sub-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 8px 0 16px;
+      padding: 0;
+    }
+
+    .sub-links:empty {
+      display: none;
+    }
+
+    .sub-link {
+      color: var(--text);
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-family: 'Space Grotesk';
+      font-size: 12.5px;
+      line-height: 1.35;
+      padding: 10px 11px;
+      overflow-wrap: anywhere;
+      transition: .15s;
+    }
+
+    .sub-link:hover {
+      color: var(--teal);
+      background: var(--surface-hi);
+      border-color: var(--teal);
+      transform: translateX(2px);
+    }
+
+    .research-links .publication-link {
+      color: var(--text);
+      font-size: 12.5px;
+    }
+
+    .research-links .publication-link:hover {
+      color: var(--teal);
+    }
+
+    .research-tag {
+      display: block;
+      color: var(--muted);
+      font-family: 'JetBrains Mono';
+      font-size: 8.5px;
+      letter-spacing: .02em;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+
+    .medium-label {
+      color: var(--muted);
+      font-family: 'JetBrains Mono';
+      font-size: 10px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .publication-link {
+      font-size: 11px;
+    }
+
     .socials a {
       color: var(--muted);
       font-size: 12.5px;
@@ -154,11 +314,13 @@
     main {
       flex: 1;
       min-width: 0;
+      margin-left: 240px;
     }
 
     section {
       padding: 88px 64px;
-      max-width: 920px;
+      width: 100%;
+      max-width: 1200px;
     }
 
     .eyebrow {
@@ -193,6 +355,11 @@
       justify-content: center;
       padding: 64px;
       overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background-image:
+        linear-gradient(rgba(79, 209, 197, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 209, 197, .035) 1px, transparent 1px);
+      background-size: 56px 56px;
     }
 
     #graph-canvas {
@@ -206,6 +373,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
+      max-width: 760px;
     }
 
     .hero-content .eyebrow {
@@ -213,7 +381,7 @@
     }
 
     .hero h1 {
-      font-size: 52px;
+      font-size: clamp(42px, 6vw, 68px);
       line-height: 1.12;
       margin-bottom: 18px;
       max-width: 680px;
@@ -228,6 +396,26 @@
       color: var(--muted);
       max-width: 540px;
       margin-bottom: 32px;
+    }
+
+    .location-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--text);
+      font-family: 'JetBrains Mono';
+      font-size: 13px;
+      margin: -12px 0 28px;
+      padding: 7px 11px;
+      border: 1px solid rgba(79, 209, 197, .35);
+      border-radius: 6px;
+      background: rgba(79, 209, 197, .06);
+    }
+
+    .location-icon {
+      color: var(--teal);
+      font-size: 18px;
+      line-height: 1;
     }
 
     .hero-tags {
@@ -277,6 +465,14 @@
     .btn-outline:hover {
       border-color: var(--teal);
       color: var(--teal);
+    }
+
+    .btn:focus-visible,
+    nav a:focus-visible,
+    .project-card:focus-visible,
+    .socials a:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 4px;
     }
 
     .btn[disabled],
@@ -439,11 +635,19 @@
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 22px;
-      transition: .15s;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
     .project-card:hover {
       border-color: var(--teal);
+      background: var(--surface-hi);
+      transform: translateY(-3px);
+    }
+
+    .featured-card {
+      border-color: rgba(79, 209, 197, .45);
+      background: linear-gradient(135deg, rgba(79, 209, 197, .1), var(--surface) 55%);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, .16);
     }
 
     .project-card .badge {
@@ -515,6 +719,15 @@
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 14px;
+      display: block;
+      min-width: 0;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .repo-card:hover {
+      background: var(--surface-hi);
+      border-color: var(--teal);
+      transform: translateY(-3px);
     }
 
     .repo-card .repo-head {
@@ -523,18 +736,21 @@
       align-items: center;
       margin-bottom: 8px;
       gap: 12px;
+      min-width: 0;
     }
 
     .repo-card h3 {
       font-size: 15px;
       color: var(--amber);
+      overflow-wrap: anywhere;
     }
 
     .repo-card .stars {
       font-family: 'JetBrains Mono';
       font-size: 12px;
       color: var(--muted);
-      white-space: nowrap;
+      white-space: normal;
+      text-align: right;
     }
 
     .repo-card p {
@@ -543,10 +759,42 @@
       margin-bottom: 12px;
     }
 
+    #github-repos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    #github-repos .repo-card {
+      margin-bottom: 0;
+    }
+
+    #github-repos .status-line {
+      grid-column: 1 / -1;
+    }
+
+    .github-empty {
+      grid-column: 1 / -1;
+      background: var(--surface);
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 22px;
+    }
+
+    .github-profile-link {
+      display: inline-block;
+      color: var(--teal);
+      font-family: 'JetBrains Mono';
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
     .commit-row {
       display: flex;
       gap: 10px;
       align-items: center;
+      flex-wrap: wrap;
+      overflow-wrap: anywhere;
       font-family: 'JetBrains Mono';
       font-size: 12px;
       color: var(--muted);
@@ -554,6 +802,7 @@
 
     .commit-row .hash {
       color: var(--teal);
+      flex-shrink: 0;
     }
 
     .status-line {
@@ -635,17 +884,73 @@
     }
 
     footer {
+      position: relative;
       padding: 40px 64px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 13px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      transition: .15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--teal);
+    }
+
+    .footer-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 22px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: 'JetBrains Mono';
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .footer-icon svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+
+    .footer-icon svg.stroke-icon {
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
     }
 
     @media (max-width:860px) {
       .sidebar {
         display: none;
+      }
+
+      main {
+        margin-left: 0;
       }
 
       section {
@@ -656,12 +961,23 @@
         padding: 24px;
       }
 
+      .hero .useful-links {
+        position: relative;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 44px;
+        transform: none;
+      }
+
       .hero h1 {
         font-size: 34px;
       }
 
       .project-grid,
-      .split-grid {
+      .split-grid,
+      #github-repos {
         grid-template-columns: 1fr;
       }
 
@@ -669,6 +985,85 @@
         padding: 32px 24px;
         flex-direction: column;
         gap: 8px;
+        align-items: flex-start;
+      }
+
+      .footer-links {
+        position: static;
+        transform: none;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --surface: #f7f8fa;
+        --surface-hi: #eef1f4;
+        --text: #17202a;
+        --muted: #4d5966;
+        --amber: #a15c00;
+        --teal: #007c78;
+        --line: #d7dde3;
+      }
+
+      body {
+        background: #ffffff;
+        color: var(--text);
+      }
+
+      .sidebar,
+      #graph-canvas,
+      .hero-tags,
+      .btn,
+      .useful-links,
+      .socials,
+      .job-links {
+        display: none !important;
+      }
+
+      .shell,
+      main {
+        display: block;
+      }
+
+      section,
+      .hero {
+        max-width: none;
+        min-height: auto;
+        padding: 28px 0;
+        page-break-inside: avoid;
+      }
+
+      .hero {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero h1,
+      .hero h1 span,
+      h2.section-title,
+      .job h3,
+      .project-card h3,
+      .pub h3 {
+        color: var(--text);
+      }
+
+      .project-grid,
+      #github-repos,
+      .split-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project-card,
+      .repo-card,
+      .edu-card,
+      .contact-box {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      footer {
+        padding: 24px 0;
       }
     }
   </style>
@@ -678,10 +1073,10 @@
 
   <div class="shell">
     <aside class="sidebar">
-      <div class="brand">
+      <a class="brand" href="#hero" aria-label="Go to homepage">
         <div class="brand-node">EK</div>
         <div class="brand-name">emine.dev</div>
-      </div>
+      </a>
       <nav>
         <a href="#hero"><span class="dot"></span>Summary</a>
         <a href="#skills"><span class="dot"></span>Skills</a>
@@ -692,25 +1087,22 @@
         <a href="#github"><span class="dot"></span>GitHub</a>
         <a href="#writing"><span class="dot"></span>Writing</a>
         <a href="#publications"><span class="dot"></span>Publications</a>
-        <a href="#learning-reading"><span class="dot"></span>Now / Reading</a>
         <a href="#contact"><span class="dot"></span>Contact</a>
       </nav>
-      <div class="socials" id="sidebar-socials">
-        <a href="#" id="social-linkedin">LinkedIn</a>
-        <a href="#" id="social-github">GitHub</a>
-        <a href="#" id="social-medium">Medium</a>
-        <a href="#" id="social-scholar">Scholar</a>
-      </div>
     </aside>
 
     <main>
       <section class="hero" id="hero">
         <canvas id="graph-canvas"></canvas>
         <div class="hero-content">
-          <div class="eyebrow">AI / ML Engineer</div>
+          <div class="eyebrow">AI Engineer · LLM & Agentic Systems</div>
           <h1>Emine <span>Kıskanç</span></h1>
-          <p class="tagline">AI engineer with 3+ years of R&D experience building production-ready RAG pipelines,
-            LangGraph multi-agent systems, and multimodal applications. Turkey.</p>
+          <p class="tagline">AI engineer with 3+ years of R&amp;D experience bridging classical computer vision/ML and
+            modern LLM-based agentic AI. Builds production-ready RAG pipelines, LangGraph multi-agent systems, and
+            multimodal (text, image, audio) applications, deployed as scalable REST APIs with FastAPI and Docker.
+            Delivered three TÜBİTAK-funded R&amp;D projects end-to-end. Prior background as a QA Lead brings a strong
+            focus on reliability, testing rigor, and stakeholder communication to AI system design.</p>
+          <div class="location-line"><span class="location-icon" aria-hidden="true">📍</span><span>Türkiye</span></div>
           <div class="hero-tags">
             <span class="tag">RAG</span>
             <span class="tag">LangGraph</span>
@@ -722,8 +1114,23 @@
             <span class="tag">Docker</span>
           </div>
           <a href="#contact" class="btn">Get in touch</a>
-          <a href="#" id="cv-download-btn" class="btn btn-outline" disabled>Download CV</a>
+          <a href="Emine-Kiskanc-CV.pdf" id="cv-download-btn" class="btn btn-outline" download>Download CV</a>
         </div>
+        <aside class="useful-links" aria-label="Useful links">
+          <div class="useful-links-title">Useful Links</div>
+          <a class="useful-link-card" href="https://emineksknc.github.io/langgraph-turkce/" target="_blank" rel="noreferrer">
+            <span class="useful-link-name">LangGraph Türkçe ↗</span>
+            <span class="useful-link-meta useful-link-status">Published guide</span>
+          </a>
+          <div class="research-links">
+            <div class="useful-links-title">Articles</div>
+            <div class="sub-links" id="medium-sub-links" aria-label="Latest Medium articles"></div>
+            <div class="sub-links">
+              <a class="sub-link publication-link" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=tr&amp;user=5mqf99UAAAAJ&amp;citation_for_view=5mqf99UAAAAJ:d1gkVwhDpl0C" target="_blank" rel="noreferrer">Classifying the Tone of Voice of Digital Marketing Text Messages Using Machine Learning Methods ↗<span class="research-tag">Research paper · 2023</span></a>
+              <a class="sub-link publication-link" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=tr&amp;user=5mqf99UAAAAJ&amp;citation_for_view=5mqf99UAAAAJ:u-x6o8ySG0sC" target="_blank" rel="noreferrer">Bilgi Çıkarımı İçin Belge Düzeni Çözümleme Yöntemleri ↗<span class="research-tag">Book chapter · 2022</span></a>
+            </div>
+          </div>
+        </aside>
       </section>
 
       <section id="skills">
@@ -774,22 +1181,37 @@
             <h3>Independent R&D — Agentic AI</h3>
             <div class="company">Self-directed portfolio work</div>
             <ul>
-              <li>Building DAN, a custom LLM-driven multi-agent system with GitHub, Reviewer, Jira, and Reporter agents.</li>
-              <li>Designed fail-closed guardrails that halt workflows when review output is empty or invalid, with full audit logging.</li>
-              <li>Built NewsGraphRAG, a local hybrid graph and vector RAG system using Neo4j, spaCy, and Ollama.</li>
+              <li>Custom, non-framework LLM-driven multi-agent system with GitHub, Reviewer, Jira, and Reporter agents
+                dynamically sequenced by an LLM orchestrator based on natural-language goals, not a hardcoded pipeline.
+              </li>
+              <li>Fail-closed guardrail layer: if the review agent's LLM output errors or comes back empty, the workflow
+                halts and routes tickets to a blocked state instead of defaulting to "safe," with full audit logging.
+              </li>
+              <li>Fully local hybrid graph + vector RAG system over a 15-article AI-industry news corpus, using spaCy
+                and Ollama for entity/event extraction and multi-hop retrieval.</li>
             </ul>
-            <div class="job-links"><a href="https://github.com/emineksknc/devops-agentic-network" target="_blank" rel="noreferrer">DAN repo ↗</a><a href="https://github.com/emineksknc/newsgraphrag" target="_blank" rel="noreferrer">NewsGraphRAG repo ↗</a></div>
+            <div class="job-links"><a href="https://github.com/emineksknc/devops-agentic-network" target="_blank"
+                rel="noreferrer">DAN repo ↗</a><a href="https://github.com/emineksknc/newsgraphrag" target="_blank"
+                rel="noreferrer">NewsGraphRAG repo ↗</a></div>
           </div>
           <div class="job">
             <div class="job-date">Aug 2022 — Sep 2025</div>
             <h3>R&D AI Engineer</h3>
             <div class="company">Mobildev</div>
             <ul>
-              <li>Designed and deployed end-to-end AI systems for real-world use cases</li>
-              <li>Built RAG and question-answering systems using LLMs and vector databases</li>
-              <li>Developed multimodal pipelines: OCR, captioning, speech-to-text, and text-to-speech</li>
-              <li>Deployed scalable REST APIs with FastAPI and Docker; improved models through preprocessing, augmentation, and fine-tuning.</li>
-              <li>Delivered three TÜBİTAK-funded R&D projects across biometrics, NLP, and generative AI.</li>
+              <li>Designed and deployed end-to-end AI systems for real-world business use cases, covering data
+                processing, model development, and production deployment.</li>
+              <li>Built Retrieval-Augmented Generation (RAG) and question-answering systems using LLMs and vector
+                databases.</li>
+              <li>Developed and optimized multimodal AI pipelines (text, image, audio), including OCR, image captioning,
+                and speech-to-text systems.</li>
+              <li>Integrated audio-to-text and text-to-speech models into scalable applications.</li>
+              <li>Deployed AI services as RESTful APIs using FastAPI and Docker, enabling scalable and production-ready
+                solutions.</li>
+              <li>Improved model performance through data augmentation, preprocessing, and fine-tuning techniques.</li>
+              <li>Collaborated with cross-functional teams to translate business needs into AI-driven solutions.</li>
+              <li>Delivered three TÜBİTAK-funded R&D projects spanning biometric recognition, NLP/tone classification,
+                and generative-AI knowledge bases.</li>
             </ul>
           </div>
           <div class="job">
@@ -797,7 +1219,13 @@
             <h3>QA Lead</h3>
             <div class="company">TechOps Center</div>
             <ul>
-              <li>Led QA team, owned test strategy and client communication</li>
+              <li>Led a QA team by planning, coordinating, and monitoring testing activities across multiple projects.
+              </li>
+              <li>Acted as the primary point of contact for clients, managing communication, expectations, and delivery
+                quality.</li>
+              <li>Designed and executed test strategies, test plans, and quality metrics aligned with business
+                requirements.</li>
+              <li>Facilitated team meetings, tracked progress, and ensured timely delivery of high-quality outputs.</li>
             </ul>
           </div>
           <div class="job">
@@ -805,7 +1233,11 @@
             <h3>QA Engineer</h3>
             <div class="company">TechOps Center</div>
             <ul>
-              <li>Selenium/BDD automation, API and performance testing</li>
+              <li>Designed and executed functional, regression, and end-to-end (E2E) test scenarios.</li>
+              <li>Performed API testing (Postman) and performance testing (JMeter).</li>
+              <li>Automated test cases using Selenium (Java) with a BDD approach.</li>
+              <li>Managed defect tracking and reporting via Jira, ensuring clear communication with development teams.
+              </li>
             </ul>
           </div>
         </div>
@@ -817,18 +1249,10 @@
         <div class="edu-card">
           <h3>Harran University — M.Sc. Computer Engineering</h3>
           <div class="meta">2019 — 2022 · not completed</div>
-          <div class="course-tags">
-            <span>Super Resolution</span>
-            <span><!-- TODO: yüksek lisans dersleri --></span>
-          </div>
         </div>
         <div class="edu-card">
           <h3>Çukurova University — B.Sc. Computer Engineering</h3>
           <div class="meta">2014 — 2019</div>
-          <div class="course-tags">
-            <span>Thesis: <!-- TODO: bitirme tezi konusu --></span>
-            <span><!-- TODO: lisans dersleri --></span>
-          </div>
         </div>
       </section>
 
@@ -887,7 +1311,8 @@
 
         <p class="subhead" id="published-guides">Published Guides</p>
         <div class="project-grid">
-          <a class="project-card" href="https://emineksknc.github.io/langgraph-turkce/" target="_blank" rel="noreferrer">
+          <a class="project-card featured-card" href="https://emineksknc.github.io/langgraph-turkce/" target="_blank"
+            rel="noreferrer">
             <span class="badge">Turkish Documentation ↗</span>
             <h3>LangGraph Türkçe Rehberi</h3>
             <p>A Turkish guide to learning multi-agent systems and flow-based AI applications with LangGraph.</p>
@@ -931,23 +1356,6 @@
         </div>
       </section>
 
-      <section id="learning-reading">
-        <div class="eyebrow">Right Now</div>
-        <h2 class="section-title">Now Learning & Currently Reading</h2>
-        <div class="split-grid">
-          <div class="list-card" id="learning-list">
-            <h3>Now Learning</h3>
-            <p class="status-line">Loading…</p>
-          </div>
-          <div class="list-card" id="reading-list">
-            <h3>Currently Reading</h3>
-            <p class="status-line">Loading…</p>
-          </div>
-        </div>
-        <p class="status-line" style="margin-top:16px;">↳ source: data.json — edit that file to update, no code changes
-          needed</p>
-      </section>
-
       <section id="contact">
         <div class="contact-box">
           <h2>Let's talk</h2>
@@ -959,7 +1367,12 @@
 
       <footer>
         <span>© 2026 Emine Kıskanç</span>
-        <span id="footer-email"></span>
+        <div class="footer-links" aria-label="Social links">
+          <a href="#" id="social-linkedin" aria-label="LinkedIn"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 8.5H3.8V20h2.7V8.5ZM5.15 4A1.6 1.6 0 1 0 5.15 7.2 1.6 1.6 0 0 0 5.15 4ZM20.2 13.4c0-3.47-1.85-5.08-4.32-5.08-1.99 0-2.88 1.1-3.38 1.87V8.5H9.8V20h2.7v-5.7c0-1.5.28-2.95 2.14-2.95 1.83 0 1.85 1.72 1.85 3.05V20h2.7v-6.6Z"/></svg></span><span>LinkedIn</span></a>
+          <a href="#" id="social-scholar" aria-label="Google Scholar"><span class="footer-icon" aria-hidden="true"><svg class="stroke-icon" viewBox="0 0 24 24"><path d="m3 10 9-5 9 5-9 5-9-5Z"/><path d="M7 12.3V16c2.8 2.3 7.2 2.3 10 0v-3.7M21 10v6"/></svg></span><span>Scholar</span></a>
+          <a href="#" id="social-medium" aria-label="Medium"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5h16v11H4v-11Zm3.2 2.1v6.8h1.1V9.9l2.8 5.5h.8l2.7-5.5v5.5h1.2V8.6h-1.7l-2.6 5.3-2.7-5.3H7.2Z"/></svg></span><span>Medium</span></a>
+          <a href="#" id="social-github" aria-label="GitHub"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-2.7 16.56c.43.08.58-.19.58-.41v-1.6c-2.36.51-2.86-1-2.86-1-.39-.99-.95-1.25-.95-1.25-.77-.53.06-.52.06-.52.85.06 1.3.87 1.3.87.75 1.29 1.97.92 2.45.7.08-.54.29-.92.53-1.13-1.88-.21-3.86-.94-3.86-4.19 0-.93.33-1.69.87-2.28-.09-.21-.38-1.08.08-2.25 0 0 .71-.23 2.34.87a8.2 8.2 0 0 1 4.26 0c1.63-1.1 2.34-.87 2.34-.87.46 1.17.17 2.04.08 2.25.54.59.87 1.35.87 2.28 0 3.26-1.98 3.98-3.87 4.19.3.26.56.76.56 1.54v2.29c0 .22.15.49.59.41A8.5 8.5 0 0 0 12 3.5Z"/></svg></span><span>GitHub</span></a>
+        </div>
       </footer>
     </main>
   </div>
@@ -971,12 +1384,12 @@
        ============================================================ */
     const CONFIG = {
       github: 'emineksknc',                                   // GitHub kullanıcı adı
-      githubReposToShow: 4,                                    // en fazla kaç repo gösterilsin
+      githubReposToShow: 5,                                    // en fazla kaç repo gösterilsin
       medium: 'eminekskncc',                                    // Medium kullanıcı adı (@ olmadan)
-      linkedin: 'http://linkedin.com/in/eminekiskanc',
-      scholar: '',                                              // TODO: Google Scholar profil linki
+      linkedin: 'https://linkedin.com/in/eminekiskanc',
+      scholar: 'https://scholar.google.com/citations?hl=tr&user=5mqf99UAAAAJ',
       email: 'eminekskncc@gmail.com',
-      cvDownloadUrl: ''                                         // TODO: PDF CV linki, örn. 'assets/Emine_Kiskanc_CV.pdf'
+      cvDownloadUrl: 'Emine-Kiskanc-CV.pdf'
     };
     /* ============================================================ */
 
@@ -984,12 +1397,9 @@
     function wireStaticLinks() {
       document.getElementById('social-linkedin').href = CONFIG.linkedin || '#';
       document.getElementById('social-github').href = `https://github.com/${CONFIG.github}`;
-      document.getElementById('social-medium').href = CONFIG.medium ? `https://medium.com/@${CONFIG.medium}` : '#';
-      document.getElementById('social-scholar').href = CONFIG.scholar || '#';
 
       document.getElementById('contact-email').href = `mailto:${CONFIG.email}`;
       document.getElementById('contact-linkedin').href = CONFIG.linkedin || '#';
-      document.getElementById('footer-email').textContent = CONFIG.email;
 
       const cvBtn = document.getElementById('cv-download-btn');
       if (CONFIG.cvDownloadUrl) {
@@ -1010,27 +1420,22 @@
 
     function renderRepoCard(repo, commitHash, commitMsg) {
       return `
-    <div class="repo-card">
+    <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noreferrer">
       <div class="repo-head">
-        <h3>${repo.name}</h3>
+        <h3>${repo.name} ↗</h3>
         <span class="stars">★ ${repo.stargazers_count} · updated ${timeAgo(repo.pushed_at)}</span>
       </div>
       <p>${repo.description ? repo.description : 'No description provided.'}</p>
       ${commitHash ? `<div class="commit-row"><span class="hash">${commitHash}</span><span>${commitMsg}</span></div>` : ''}
-    </div>`;
+    </a>`;
     }
 
     function fallbackReposHTML() {
       return `
-    <div class="repo-card">
-      <div class="repo-head"><h3>news-graph-rag</h3><span class="stars">GitHub API unavailable</span></div>
-      <p>Graph RAG pipeline using Neo4j and local LLMs for news retrieval.</p>
-    </div>
-    <div class="repo-card">
-      <div class="repo-head"><h3>dan-devops-agent</h3><span class="stars">GitHub API unavailable</span></div>
-      <p>Multi-agent DevOps automation network.</p>
-    </div>
-    <p class="status-line">Live data could not be loaded right now (rate limit or network). Showing fallback content — check console for details.</p>`;
+    <div class="github-empty">
+      <p class="status-line">Repository data is not available yet.</p>
+      <a href="https://github.com/emineksknc?tab=repositories" target="_blank" rel="noreferrer" class="github-profile-link">View all repositories on GitHub ↗</a>
+    </div>`;
     }
 
     async function loadGitHub() {
@@ -1040,7 +1445,7 @@
         if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
         let repos = await res.json();
         repos = repos.filter(r => !r.fork).slice(0, CONFIG.githubReposToShow);
-        if (repos.length === 0) { container.innerHTML = fallbackReposHTML(); return; }
+        if (repos.length === 0) { container.innerHTML = getCachedReposHTML() || fallbackReposHTML(); return; }
 
         const cards = await Promise.all(repos.map(async (repo) => {
           let hash = '', msg = '';
@@ -1056,10 +1461,20 @@
           } catch (e) { /* skip commit info for this repo */ }
           return renderRepoCard(repo, hash, msg);
         }));
-        container.innerHTML = cards.join('');
+        const cardsHTML = cards.join('');
+        localStorage.setItem('github-repos-cache-v2', cardsHTML);
+        container.innerHTML = cardsHTML;
       } catch (e) {
         console.warn('GitHub fetch failed:', e);
-        container.innerHTML = fallbackReposHTML();
+        container.innerHTML = getCachedReposHTML() || fallbackReposHTML();
+      }
+    }
+
+    function getCachedReposHTML() {
+      try {
+        return localStorage.getItem('github-repos-cache-v2');
+      } catch (e) {
+        return '';
       }
     }
 
@@ -1076,12 +1491,17 @@
     </div>`;
     }
 
+    function renderMediumSubLink(item) {
+      return `<a class="sub-link" href="${item.link}" target="_blank" rel="noreferrer">${item.title} ↗<span class="research-tag">Medium article</span></a>`;
+    }
+
     function fallbackMediumHTML() {
       return `<p class="status-line">Add a Medium username in CONFIG to show live posts here.</p>`;
     }
 
     async function loadMedium() {
       const container = document.getElementById('medium-posts');
+      const submenu = document.getElementById('medium-sub-links');
       if (!CONFIG.medium) { container.innerHTML = fallbackMediumHTML(); return; }
       try {
         const rssUrl = `https://medium.com/feed/@${CONFIG.medium}`;
@@ -1090,36 +1510,12 @@
         const data = await res.json();
         console.log('rss2json response:', data);
         if (data.status !== 'ok' || !data.items?.length) throw new Error(`No items returned (status: ${data.status}, message: ${data.message || 'n/a'})`);
-        container.innerHTML = data.items.slice(0, 3).map(renderMediumItem).join('');
+        const latestItems = data.items.slice(0, 3);
+        container.innerHTML = latestItems.map(renderMediumItem).join('');
+        submenu.innerHTML = latestItems.map(renderMediumSubLink).join('');
       } catch (e) {
         console.warn('Medium fetch failed:', e);
         container.innerHTML = `<p class="status-line">Live posts could not be loaded right now. Showing fallback content.</p>`;
-      }
-    }
-
-    // --- Now Learning / Currently Reading from data.json ---
-    function renderListItems(item) {
-      const sourceLine = item.source ? `<span>${item.source}</span>` : '';
-      return `
-    <div class="list-item">
-      <div class="marker"></div>
-      <div><p>${item.text}</p>${sourceLine}<span>${item.status}</span></div>
-    </div>`;
-    }
-
-    async function loadNowData() {
-      const learningCard = document.getElementById('learning-list');
-      const readingCard = document.getElementById('reading-list');
-      try {
-        const res = await fetch('data.json');
-        if (!res.ok) throw new Error('data.json not found');
-        const data = await res.json();
-        learningCard.innerHTML = '<h3>Now Learning</h3>' + (data.nowLearning || []).map(renderListItems).join('');
-        readingCard.innerHTML = '<h3>Currently Reading</h3>' + (data.currentlyReading || []).map(renderListItems).join('');
-      } catch (e) {
-        console.warn('data.json fetch failed:', e);
-        learningCard.innerHTML = '<h3>Now Learning</h3><p class="status-line">Could not load data.json — make sure it sits next to index.html.</p>';
-        readingCard.innerHTML = '<h3>Currently Reading</h3><p class="status-line">Could not load data.json — make sure it sits next to index.html.</p>';
       }
     }
 
@@ -1168,7 +1564,6 @@
     initGraphCanvas();
     loadGitHub();
     loadMedium();
-    loadNowData();
   </script>
 </body>
 
