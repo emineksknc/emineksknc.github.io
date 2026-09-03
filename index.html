@@ -32,7 +32,10 @@
     }
 
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 78% 4%, rgba(79, 209, 197, .08), transparent 28%),
+        radial-gradient(circle at 22% 70%, rgba(232, 163, 61, .05), transparent 30%),
+        var(--bg);
       color: var(--text);
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
@@ -63,6 +66,8 @@
       width: 240px;
       flex-shrink: 0;
       border-right: 1px solid var(--line);
+      background: rgba(15, 19, 25, .82);
+      backdrop-filter: blur(14px);
       padding: 32px 24px;
       position: sticky;
       top: 0;
@@ -120,6 +125,7 @@
     nav a:hover {
       background: var(--surface);
       color: var(--text);
+      transform: translateX(3px);
     }
 
     nav a .dot {
@@ -158,7 +164,8 @@
 
     section {
       padding: 88px 64px;
-      max-width: 920px;
+      width: 100%;
+      max-width: 1200px;
     }
 
     .eyebrow {
@@ -193,6 +200,11 @@
       justify-content: center;
       padding: 64px;
       overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background-image:
+        linear-gradient(rgba(79, 209, 197, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 209, 197, .035) 1px, transparent 1px);
+      background-size: 56px 56px;
     }
 
     #graph-canvas {
@@ -206,6 +218,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
+      max-width: 760px;
     }
 
     .hero-content .eyebrow {
@@ -213,7 +226,7 @@
     }
 
     .hero h1 {
-      font-size: 52px;
+      font-size: clamp(42px, 6vw, 68px);
       line-height: 1.12;
       margin-bottom: 18px;
       max-width: 680px;
@@ -228,6 +241,26 @@
       color: var(--muted);
       max-width: 540px;
       margin-bottom: 32px;
+    }
+
+    .location-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--text);
+      font-family: 'JetBrains Mono';
+      font-size: 13px;
+      margin: -12px 0 28px;
+      padding: 7px 11px;
+      border: 1px solid rgba(79, 209, 197, .35);
+      border-radius: 6px;
+      background: rgba(79, 209, 197, .06);
+    }
+
+    .location-icon {
+      color: var(--teal);
+      font-size: 18px;
+      line-height: 1;
     }
 
     .hero-tags {
@@ -277,6 +310,14 @@
     .btn-outline:hover {
       border-color: var(--teal);
       color: var(--teal);
+    }
+
+    .btn:focus-visible,
+    nav a:focus-visible,
+    .project-card:focus-visible,
+    .socials a:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 4px;
     }
 
     .btn[disabled],
@@ -439,11 +480,19 @@
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 22px;
-      transition: .15s;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
     .project-card:hover {
       border-color: var(--teal);
+      background: var(--surface-hi);
+      transform: translateY(-3px);
+    }
+
+    .featured-card {
+      border-color: rgba(79, 209, 197, .45);
+      background: linear-gradient(135deg, rgba(79, 209, 197, .1), var(--surface) 55%);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, .16);
     }
 
     .project-card .badge {
@@ -515,6 +564,15 @@
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 14px;
+      display: block;
+      min-width: 0;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .repo-card:hover {
+      background: var(--surface-hi);
+      border-color: var(--teal);
+      transform: translateY(-3px);
     }
 
     .repo-card .repo-head {
@@ -523,18 +581,21 @@
       align-items: center;
       margin-bottom: 8px;
       gap: 12px;
+      min-width: 0;
     }
 
     .repo-card h3 {
       font-size: 15px;
       color: var(--amber);
+      overflow-wrap: anywhere;
     }
 
     .repo-card .stars {
       font-family: 'JetBrains Mono';
       font-size: 12px;
       color: var(--muted);
-      white-space: nowrap;
+      white-space: normal;
+      text-align: right;
     }
 
     .repo-card p {
@@ -543,10 +604,42 @@
       margin-bottom: 12px;
     }
 
+    #github-repos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    #github-repos .repo-card {
+      margin-bottom: 0;
+    }
+
+    #github-repos .status-line {
+      grid-column: 1 / -1;
+    }
+
+    .github-empty {
+      grid-column: 1 / -1;
+      background: var(--surface);
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 22px;
+    }
+
+    .github-profile-link {
+      display: inline-block;
+      color: var(--teal);
+      font-family: 'JetBrains Mono';
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
     .commit-row {
       display: flex;
       gap: 10px;
       align-items: center;
+      flex-wrap: wrap;
+      overflow-wrap: anywhere;
       font-family: 'JetBrains Mono';
       font-size: 12px;
       color: var(--muted);
@@ -554,6 +647,7 @@
 
     .commit-row .hash {
       color: var(--teal);
+      flex-shrink: 0;
     }
 
     .status-line {
@@ -661,7 +755,8 @@
       }
 
       .project-grid,
-      .split-grid {
+      .split-grid,
+      #github-repos {
         grid-template-columns: 1fr;
       }
 
@@ -669,6 +764,77 @@
         padding: 32px 24px;
         flex-direction: column;
         gap: 8px;
+      }
+    }
+
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --surface: #f7f8fa;
+        --surface-hi: #eef1f4;
+        --text: #17202a;
+        --muted: #4d5966;
+        --amber: #a15c00;
+        --teal: #007c78;
+        --line: #d7dde3;
+      }
+
+      body {
+        background: #ffffff;
+        color: var(--text);
+      }
+
+      .sidebar,
+      #graph-canvas,
+      .hero-tags,
+      .btn,
+      .socials,
+      .job-links {
+        display: none !important;
+      }
+
+      .shell,
+      main {
+        display: block;
+      }
+
+      section,
+      .hero {
+        max-width: none;
+        min-height: auto;
+        padding: 28px 0;
+        page-break-inside: avoid;
+      }
+
+      .hero {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero h1,
+      .hero h1 span,
+      h2.section-title,
+      .job h3,
+      .project-card h3,
+      .pub h3 {
+        color: var(--text);
+      }
+
+      .project-grid,
+      #github-repos,
+      .split-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project-card,
+      .repo-card,
+      .edu-card,
+      .contact-box {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      footer {
+        padding: 24px 0;
       }
     }
   </style>
@@ -688,10 +854,10 @@
         <a href="#experience"><span class="dot"></span>Experience</a>
         <a href="#education"><span class="dot"></span>Education</a>
         <a href="#projects"><span class="dot"></span>Projects</a>
+        <a href="#published-guides"><span class="dot"></span>Published Guides</a>
         <a href="#github"><span class="dot"></span>GitHub</a>
         <a href="#writing"><span class="dot"></span>Writing</a>
         <a href="#publications"><span class="dot"></span>Publications</a>
-        <a href="#learning-reading"><span class="dot"></span>Now / Reading</a>
         <a href="#contact"><span class="dot"></span>Contact</a>
       </nav>
       <div class="socials" id="sidebar-socials">
@@ -706,12 +872,18 @@
       <section class="hero" id="hero">
         <canvas id="graph-canvas"></canvas>
         <div class="hero-content">
-          <div class="eyebrow">AI / ML Engineer</div>
+          <div class="eyebrow">AI Engineer · LLM & Agentic Systems</div>
           <h1>Emine <span>Kıskanç</span></h1>
-          <p class="tagline">AI Engineer building end-to-end RAG pipelines, multimodal AI systems, and LLM-based
-            applications across text, image, and audio. Turkey.</p>
+          <p class="tagline">AI engineer with 3+ years of R&amp;D experience bridging classical computer vision/ML and
+            modern LLM-based agentic AI. Builds production-ready RAG pipelines, LangGraph multi-agent systems, and
+            multimodal (text, image, audio) applications, deployed as scalable REST APIs with FastAPI and Docker.
+            Delivered three TÜBİTAK-funded R&amp;D projects end-to-end. Prior background as a QA Lead brings a strong
+            focus on reliability, testing rigor, and stakeholder communication to AI system design.</p>
+          <div class="location-line"><span class="location-icon" aria-hidden="true">📍</span><span>Türkiye</span></div>
           <div class="hero-tags">
             <span class="tag">RAG</span>
+            <span class="tag">LangGraph</span>
+            <span class="tag">Agentic AI</span>
             <span class="tag">LangChain</span>
             <span class="tag">Knowledge Graphs</span>
             <span class="tag">Computer Vision</span>
@@ -719,7 +891,7 @@
             <span class="tag">Docker</span>
           </div>
           <a href="#contact" class="btn">Get in touch</a>
-          <a href="#" id="cv-download-btn" class="btn btn-outline" disabled>Download CV</a>
+          <a href="Emine-Kiskanc-CV.pdf" id="cv-download-btn" class="btn btn-outline" download>Download CV</a>
         </div>
       </section>
 
@@ -729,12 +901,14 @@
         <div class="skill-group">
           <h3>AI & Machine Learning</h3>
           <div class="chip-row">
-            <span class="chip">LLM (LLaMA, Mistral, Falcon)</span>
-            <span class="chip">RAG — LangChain / LlamaIndex</span>
-            <span class="chip">PyTorch / TensorFlow</span>
-            <span class="chip">YOLO Object Detection</span>
-            <span class="chip">Stable Diffusion</span>
-            <span class="chip">Whisper / Seamless</span>
+            <span class="chip">LangGraph multi-agent orchestration</span>
+            <span class="chip">LangChain / LlamaIndex / Haystack</span>
+            <span class="chip">Google Gemini API / Ollama</span>
+            <span class="chip">LLaMA / Mistral / Qwen / Falcon / BERT</span>
+            <span class="chip">PyTorch / TensorFlow / Keras</span>
+            <span class="chip">YOLOv8 / YOLO-World / ByteTrack</span>
+            <span class="chip">Stable Diffusion / BLIP / CLIP</span>
+            <span class="chip">Whisper / Wav2Vec / XTTS / Coqui</span>
           </div>
         </div>
         <div class="skill-group">
@@ -742,9 +916,20 @@
           <div class="chip-row">
             <span class="chip">FastAPI</span>
             <span class="chip">Docker</span>
-            <span class="chip">Pinecone / Qdrant / Weaviate</span>
-            <span class="chip">MLflow</span>
-            <span class="chip">Celery / Redis</span>
+            <span class="chip">RAG pipeline design / hybrid retrieval</span>
+            <span class="chip">Qdrant / Pinecone / Weaviate / Milvus</span>
+            <span class="chip">Neo4j / MongoDB / SQLite</span>
+            <span class="chip">MLflow / Grafana / Prometheus</span>
+            <span class="chip">Celery / Redis / Jenkins / CUDA / Linux</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Computer Vision, Data & QA</h3>
+          <div class="chip-row">
+            <span class="chip">OpenCV / skimage / OCR / face recognition</span>
+            <span class="chip">pandas / NumPy / scikit-learn</span>
+            <span class="chip">Selenium (BDD) / Postman / JMeter</span>
+            <span class="chip">Test planning / E2E / regression / Jira</span>
           </div>
         </div>
       </section>
@@ -754,13 +939,41 @@
         <h2 class="section-title">Work History</h2>
         <div class="timeline">
           <div class="job">
+            <div class="job-date">Oct 2025 — Present</div>
+            <h3>Independent R&D — Agentic AI</h3>
+            <div class="company">Self-directed portfolio work</div>
+            <ul>
+              <li>Custom, non-framework LLM-driven multi-agent system with GitHub, Reviewer, Jira, and Reporter agents
+                dynamically sequenced by an LLM orchestrator based on natural-language goals, not a hardcoded pipeline.
+              </li>
+              <li>Fail-closed guardrail layer: if the review agent's LLM output errors or comes back empty, the workflow
+                halts and routes tickets to a blocked state instead of defaulting to "safe," with full audit logging.
+              </li>
+              <li>Fully local hybrid graph + vector RAG system over a 15-article AI-industry news corpus, using spaCy
+                and Ollama for entity/event extraction and multi-hop retrieval.</li>
+            </ul>
+            <div class="job-links"><a href="https://github.com/emineksknc/devops-agentic-network" target="_blank"
+                rel="noreferrer">DAN repo ↗</a><a href="https://github.com/emineksknc/newsgraphrag" target="_blank"
+                rel="noreferrer">NewsGraphRAG repo ↗</a></div>
+          </div>
+          <div class="job">
             <div class="job-date">Aug 2022 — Sep 2025</div>
-            <h3>R&D Engineer</h3>
+            <h3>R&D AI Engineer</h3>
             <div class="company">Mobildev</div>
             <ul>
-              <li>Designed and deployed end-to-end AI systems for real-world use cases</li>
-              <li>Built RAG and question-answering systems using LLMs and vector databases</li>
-              <li>Developed multimodal pipelines: OCR, captioning, speech-to-text, text-to-speech</li>
+              <li>Designed and deployed end-to-end AI systems for real-world business use cases, covering data
+                processing, model development, and production deployment.</li>
+              <li>Built Retrieval-Augmented Generation (RAG) and question-answering systems using LLMs and vector
+                databases.</li>
+              <li>Developed and optimized multimodal AI pipelines (text, image, audio), including OCR, image captioning,
+                and speech-to-text systems.</li>
+              <li>Integrated audio-to-text and text-to-speech models into scalable applications.</li>
+              <li>Deployed AI services as RESTful APIs using FastAPI and Docker, enabling scalable and production-ready
+                solutions.</li>
+              <li>Improved model performance through data augmentation, preprocessing, and fine-tuning techniques.</li>
+              <li>Collaborated with cross-functional teams to translate business needs into AI-driven solutions.</li>
+              <li>Delivered three TÜBİTAK-funded R&D projects spanning biometric recognition, NLP/tone classification,
+                and generative-AI knowledge bases.</li>
             </ul>
           </div>
           <div class="job">
@@ -768,7 +981,13 @@
             <h3>QA Lead</h3>
             <div class="company">TechOps Center</div>
             <ul>
-              <li>Led QA team, owned test strategy and client communication</li>
+              <li>Led a QA team by planning, coordinating, and monitoring testing activities across multiple projects.
+              </li>
+              <li>Acted as the primary point of contact for clients, managing communication, expectations, and delivery
+                quality.</li>
+              <li>Designed and executed test strategies, test plans, and quality metrics aligned with business
+                requirements.</li>
+              <li>Facilitated team meetings, tracked progress, and ensured timely delivery of high-quality outputs.</li>
             </ul>
           </div>
           <div class="job">
@@ -776,7 +995,11 @@
             <h3>QA Engineer</h3>
             <div class="company">TechOps Center</div>
             <ul>
-              <li>Selenium/BDD automation, API and performance testing</li>
+              <li>Designed and executed functional, regression, and end-to-end (E2E) test scenarios.</li>
+              <li>Performed API testing (Postman) and performance testing (JMeter).</li>
+              <li>Automated test cases using Selenium (Java) with a BDD approach.</li>
+              <li>Managed defect tracking and reporting via Jira, ensuring clear communication with development teams.
+              </li>
             </ul>
           </div>
         </div>
@@ -855,6 +1078,17 @@
             <div class="tag-row"><span>#react-native</span><span>#supabase</span></div>
           </div>
         </div>
+
+        <p class="subhead" id="published-guides">Published Guides</p>
+        <div class="project-grid">
+          <a class="project-card featured-card" href="https://emineksknc.github.io/langgraph-turkce/" target="_blank"
+            rel="noreferrer">
+            <span class="badge">Turkish Documentation ↗</span>
+            <h3>LangGraph Türkçe Rehberi</h3>
+            <p>A Turkish guide to learning multi-agent systems and flow-based AI applications with LangGraph.</p>
+            <div class="tag-row"><span>#langgraph</span><span>#agentic-ai</span><span>#documentation</span></div>
+          </a>
+        </div>
       </section>
 
       <section id="github">
@@ -892,23 +1126,6 @@
         </div>
       </section>
 
-      <section id="learning-reading">
-        <div class="eyebrow">Right Now</div>
-        <h2 class="section-title">Now Learning & Currently Reading</h2>
-        <div class="split-grid">
-          <div class="list-card" id="learning-list">
-            <h3>Now Learning</h3>
-            <p class="status-line">Loading…</p>
-          </div>
-          <div class="list-card" id="reading-list">
-            <h3>Currently Reading</h3>
-            <p class="status-line">Loading…</p>
-          </div>
-        </div>
-        <p class="status-line" style="margin-top:16px;">↳ source: data.json — edit that file to update, no code changes
-          needed</p>
-      </section>
-
       <section id="contact">
         <div class="contact-box">
           <h2>Let's talk</h2>
@@ -932,12 +1149,12 @@
        ============================================================ */
     const CONFIG = {
       github: 'emineksknc',                                   // GitHub kullanıcı adı
-      githubReposToShow: 4,                                    // en fazla kaç repo gösterilsin
+      githubReposToShow: 5,                                    // en fazla kaç repo gösterilsin
       medium: 'eminekskncc',                                    // Medium kullanıcı adı (@ olmadan)
-      linkedin: 'http://linkedin.com/in/eminekiskanc',
-      scholar: '',                                              // TODO: Google Scholar profil linki
+      linkedin: 'https://linkedin.com/in/eminekiskanc',
+      scholar: 'https://scholar.google.com/citations?hl=tr&user=5mqf99UAAAAJ',
       email: 'eminekskncc@gmail.com',
-      cvDownloadUrl: ''                                         // TODO: PDF CV linki, örn. 'assets/Emine_Kiskanc_CV.pdf'
+      cvDownloadUrl: 'Emine-Kiskanc-CV.pdf'
     };
     /* ============================================================ */
 
@@ -971,27 +1188,22 @@
 
     function renderRepoCard(repo, commitHash, commitMsg) {
       return `
-    <div class="repo-card">
+    <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noreferrer">
       <div class="repo-head">
-        <h3>${repo.name}</h3>
+        <h3>${repo.name} ↗</h3>
         <span class="stars">★ ${repo.stargazers_count} · updated ${timeAgo(repo.pushed_at)}</span>
       </div>
       <p>${repo.description ? repo.description : 'No description provided.'}</p>
       ${commitHash ? `<div class="commit-row"><span class="hash">${commitHash}</span><span>${commitMsg}</span></div>` : ''}
-    </div>`;
+    </a>`;
     }
 
     function fallbackReposHTML() {
       return `
-    <div class="repo-card">
-      <div class="repo-head"><h3>news-graph-rag</h3><span class="stars">GitHub API unavailable</span></div>
-      <p>Graph RAG pipeline using Neo4j and local LLMs for news retrieval.</p>
-    </div>
-    <div class="repo-card">
-      <div class="repo-head"><h3>dan-devops-agent</h3><span class="stars">GitHub API unavailable</span></div>
-      <p>Multi-agent DevOps automation network.</p>
-    </div>
-    <p class="status-line">Live data could not be loaded right now (rate limit or network). Showing fallback content — check console for details.</p>`;
+    <div class="github-empty">
+      <p class="status-line">Repository data is not available yet.</p>
+      <a href="https://github.com/emineksknc?tab=repositories" target="_blank" rel="noreferrer" class="github-profile-link">View all repositories on GitHub ↗</a>
+    </div>`;
     }
 
     async function loadGitHub() {
@@ -1001,7 +1213,7 @@
         if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
         let repos = await res.json();
         repos = repos.filter(r => !r.fork).slice(0, CONFIG.githubReposToShow);
-        if (repos.length === 0) { container.innerHTML = fallbackReposHTML(); return; }
+        if (repos.length === 0) { container.innerHTML = getCachedReposHTML() || fallbackReposHTML(); return; }
 
         const cards = await Promise.all(repos.map(async (repo) => {
           let hash = '', msg = '';
@@ -1017,10 +1229,20 @@
           } catch (e) { /* skip commit info for this repo */ }
           return renderRepoCard(repo, hash, msg);
         }));
-        container.innerHTML = cards.join('');
+        const cardsHTML = cards.join('');
+        localStorage.setItem('github-repos-cache-v2', cardsHTML);
+        container.innerHTML = cardsHTML;
       } catch (e) {
         console.warn('GitHub fetch failed:', e);
-        container.innerHTML = fallbackReposHTML();
+        container.innerHTML = getCachedReposHTML() || fallbackReposHTML();
+      }
+    }
+
+    function getCachedReposHTML() {
+      try {
+        return localStorage.getItem('github-repos-cache-v2');
+      } catch (e) {
+        return '';
       }
     }
 
@@ -1055,32 +1277,6 @@
       } catch (e) {
         console.warn('Medium fetch failed:', e);
         container.innerHTML = `<p class="status-line">Live posts could not be loaded right now. Showing fallback content.</p>`;
-      }
-    }
-
-    // --- Now Learning / Currently Reading from data.json ---
-    function renderListItems(item) {
-      const sourceLine = item.source ? `<span>${item.source}</span>` : '';
-      return `
-    <div class="list-item">
-      <div class="marker"></div>
-      <div><p>${item.text}</p>${sourceLine}<span>${item.status}</span></div>
-    </div>`;
-    }
-
-    async function loadNowData() {
-      const learningCard = document.getElementById('learning-list');
-      const readingCard = document.getElementById('reading-list');
-      try {
-        const res = await fetch('data.json');
-        if (!res.ok) throw new Error('data.json not found');
-        const data = await res.json();
-        learningCard.innerHTML = '<h3>Now Learning</h3>' + (data.nowLearning || []).map(renderListItems).join('');
-        readingCard.innerHTML = '<h3>Currently Reading</h3>' + (data.currentlyReading || []).map(renderListItems).join('');
-      } catch (e) {
-        console.warn('data.json fetch failed:', e);
-        learningCard.innerHTML = '<h3>Now Learning</h3><p class="status-line">Could not load data.json — make sure it sits next to index.html.</p>';
-        readingCard.innerHTML = '<h3>Currently Reading</h3><p class="status-line">Could not load data.json — make sure it sits next to index.html.</p>';
       }
     }
 
@@ -1129,7 +1325,6 @@
     initGraphCanvas();
     loadGitHub();
     loadMedium();
-    loadNowData();
   </script>
 </body>
 

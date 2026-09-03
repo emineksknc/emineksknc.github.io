@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function App() {
+  const [activeTab, setActiveTab] = useState('profile');
+
   const resume = {
     name: "Emine Kıskanç",
-    title: "Software Engineer | AI Engineer",
-    subtitle: "Specialized in Applied AI & LLM Systems",
+    title: "AI Engineer — LLM & Agentic Systems",
+    subtitle: "Building reliable, production-ready AI systems",
     location: "Turkey",
     email: "eminekskncc@gmail.com",
     github: "https://github.com/emineksknc",
@@ -13,32 +15,43 @@ function App() {
 
     skills: {
       aiMl: [
-        "LLMs (BERT, LLaMA, Falcon, Mistral, Zephyr, Seamless)",
-        "RAG (LangChain, LlamaIndex, Haystack)",
-        "Deep Learning (PyTorch, TensorFlow, Keras)",
-        "Computer Vision (YOLO, Face Recognition, OpenCV, OCR)",
-        "Generative Models (Stable Diffusion, BLIP, Paligemma, CLIP)",
-        "Audio & Speech (Whisper, Wav2Vec, XTTS, Coqui, Seamless)"
+        "LangGraph (multi-agent orchestration)", "LangChain", "LlamaIndex", "Haystack",
+        "Prompt engineering", "Google Gemini API", "LLaMA", "Mistral", "Qwen", "Falcon", "Zephyr", "BERT"
       ],
       mLOps: [
-        "FastAPI", "Docker", "Celery", "Redis",
-        "Grafana", "Prometheus", "Jenkins (CI/CD)",
-        "MLflow", "Linux", "CUDA Optimization"
+        "FastAPI", "Docker", "REST APIs", "Celery", "Redis", "MLflow",
+        "Grafana", "Prometheus", "Jenkins", "CUDA", "Linux"
       ],
-      databases: ["Weaviate", "Pinecone", "Milvus", "Qdrant", "MongoDB", "SQLite"],
-      qaTesting: ["Selenium (BDD)", "JMeter", "Postman", "E2E Testing", "Jira"]
+      databases: ["RAG pipeline design", "Hybrid retrieval", "Qdrant", "Pinecone", "Weaviate", "Milvus", "Neo4j", "MongoDB", "SQLite"],
+      qaTesting: ["Selenium (BDD)", "JMeter", "Postman", "Test planning", "E2E/regression testing", "Jira"]
     },
 
     experience: [
       {
-        role: "R&D Engineer",
+        role: "Independent R&D — Agentic AI",
+        company: "Self-directed portfolio work",
+        period: "Oct 2025 - Present",
+        bullets: [
+          "Building DAN, a custom LLM-driven multi-agent system with GitHub, Reviewer, Jira, and Reporter agents dynamically sequenced by an LLM orchestrator.",
+          "Designed fail-closed guardrails that halt workflows and route tickets to a blocked state when review output is empty or invalid, with full audit logging.",
+          "Built NewsGraphRAG, a fully local hybrid graph and vector RAG system using Neo4j, spaCy, and Ollama for multi-hop questions across AI industry news."
+        ],
+        links: [
+          { label: "DAN repo", url: "https://github.com/emineksknc/devops-agentic-network" },
+          { label: "NewsGraphRAG repo", url: "https://github.com/emineksknc/newsgraphrag" }
+        ]
+      },
+      {
+        role: "R&D AI Engineer",
         company: "Mobildev",
         period: "Aug 2022 - Sep 2025",
         bullets: [
           "Designed and deployed end-to-end AI systems for real-world business use cases, covering data processing, model development, and production deployment.",
           "Built Retrieval-Augmented Generation (RAG) and question-answering systems using LLMs and vector databases.",
           "Developed and optimized multimodal AI pipelines (text, image, audio), including OCR, image captioning, and speech-to-text systems.",
-          "Deployed AI services as RESTful APIs using FastAPI and Docker, enabling scalable and production-ready solutions."
+          "Integrated audio-to-text and text-to-speech models into scalable applications.",
+          "Deployed AI services as RESTful APIs using FastAPI and Docker, improving performance through preprocessing, data augmentation, and fine-tuning.",
+          "Delivered three TÜBİTAK-funded R&D projects spanning biometric recognition, NLP, and generative AI knowledge bases."
         ]
       },
       {
@@ -64,25 +77,19 @@ function App() {
 
     projects: [
       {
-        title: "Generative AI Knowledge Base & Q&A Analytics (2025)",
+        title: "Original Knowledge Base and Q&A / Content Generation with Generative AI (2025)",
         tag: "TUBITAK Supported",
-        description: "Designed and implemented a knowledge base with vector database integration for efficient information retrieval. Utilized prompt engineering and LLMs for semantic search, content understanding, and text analysis. Developed pipelines to ingest multimodal data sources using OCR, speech-to-text, and computer vision."
+        description: "Designed a vector-backed knowledge base, multimodal ingestion pipelines, and a provider-agnostic LLM backend for retrieval, analysis, and content generation."
       },
       {
-        title: "Audience Analysis & Intelligent Marketing Message Production (2023)",
+        title: "AI-Supported Audience Analysis & Intelligent Marketing Message Production (2023)",
         tag: "TUBITAK Supported",
-        description: "Worked on NLP modules focusing on text analysis, tone of voice classification for SMS messages, and Named Entity Recognition (NER) modules, managing full training, optimization, and system integration."
+        description: "Built NLP modules for SMS text analysis, tone-of-voice classification, and Named Entity Recognition, including training, optimization, and integration."
       },
       {
-        title: "Multimedia Personal Data Categorization Solution (2022)",
+        title: "Solution for Categorizing Personal Data on Multimedia Files (2022)",
         tag: "TUBITAK Supported",
         description: "Developed and integrated biometric recognition modules (signature, face, and fingerprint) including model training, optimization, and secure deployment."
-      },
-      {
-        title: "LangGraph Türkçe Rehberi",
-        tag: "Personal Project",
-        description: "LangGraph ile çoklu ajan sistemleri ve iş akışlarını Türkçe anlatan interaktif rehber.",
-        url: "https://emineksknc.github.io/langgraph-turkce/"
       }
     ],
 
@@ -122,100 +129,143 @@ function App() {
         </div>
       </header>
 
-      {/* Skills Section */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Technical Expertise</h2>
-        <div style={styles.skillsContainer}>
-          <div style={styles.skillCategory}>
-            <h4>AI & Machine Learning</h4>
-            <div style={styles.badgeGroup}>
-              {resume.skills.aiMl.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
-            </div>
-          </div>
-          <div style={styles.skillCategory}>
-            <h4>Infrastructure & MLOps</h4>
-            <div style={styles.badgeGroup}>
-              {resume.skills.mLOps.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
-            </div>
-          </div>
-          <div style={styles.skillCategory}>
-            <h4>Vector & Relational Databases</h4>
-            <div style={styles.badgeGroup}>
-              {resume.skills.databases.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
-            </div>
-          </div>
-          <div style={styles.skillCategory}>
-            <h4>Testing & Quality Assurance</h4>
-            <div style={styles.badgeGroup}>
-              {resume.skills.qaTesting.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
-            </div>
-          </div>
-        </div>
-      </section>
+      <nav style={styles.navigation} aria-label="Main navigation">
+        <button
+          type="button"
+          onClick={() => setActiveTab('profile')}
+          style={{ ...styles.navButton, ...(activeTab === 'profile' ? styles.activeNavButton : {}) }}
+        >
+          Profile
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab('langgraph')}
+          style={{ ...styles.navButton, ...(activeTab === 'langgraph' ? styles.activeNavButton : {}) }}
+        >
+          LangGraph Türkçe
+        </button>
+      </nav>
 
-      {/* Experience Section */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Professional Experience</h2>
-        {resume.experience.map((exp, index) => (
-          <div key={index} style={styles.card}>
-            <div style={styles.cardHeader}>
-              <h3>{exp.role} <span style={styles.company}>@ {exp.company}</span></h3>
-              <span style={styles.date}>{exp.period}</span>
-            </div>
-            <ul style={styles.bulletList}>
-              {exp.bullets.map((b, i) => <li key={i} style={styles.bulletItem}>{b}</li>)}
-            </ul>
-          </div>
-        ))}
-      </section>
-
-      {/* Projects Section */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Research & R&D Projects</h2>
-        <div style={styles.projectsGrid}>
-          {resume.projects.map((proj, index) => {
-            const ProjectCard = proj.url ? 'a' : 'div';
-
-            return (
-              <ProjectCard
-                key={index}
-                style={styles.projectCard}
-                {...(proj.url && {
-                  href: proj.url,
-                  target: "_blank",
-                  rel: "noreferrer"
-                })}
-              >
-                <div style={styles.cardHeader}>
-                  <h3 style={styles.projectTitle}>{proj.title}</h3>
-                  <span style={styles.projectTag}>{proj.tag}</span>
+      {activeTab === 'profile' && (
+        <>
+          {/* Skills Section */}
+          <section style={styles.section}>
+            <h2 style={styles.sectionTitle}>Technical Expertise</h2>
+            <div style={styles.skillsContainer}>
+              <div style={styles.skillCategory}>
+                <h4>AI & Machine Learning</h4>
+                <div style={styles.badgeGroup}>
+                  {resume.skills.aiMl.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
                 </div>
-                <p style={styles.projectDesc}>{proj.description}</p>
-              </ProjectCard>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Publications & Education */}
-      <div style={styles.twoColumnGrid}>
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Publications</h2>
-          <ul style={styles.bulletList}>
-            {resume.publications.map((pub, i) => <li key={i} style={styles.bulletItem}><span style={styles.pubText}>{pub}</span></li>)}
-          </ul>
-        </section>
-
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Education</h2>
-          {resume.education.map((edu, i) => (
-            <div key={i} style={{ marginBottom: '1rem' }}>
-              <h4 style={{ margin: '0 0 0.25rem 0', color: '#f1f5f9' }}>{edu.degree}</h4>
-              <p style={{ margin: 0, fontSize: '0.9rem', color: '#94a3b8' }}>{edu.school} ({edu.period})</p>
+              </div>
+              <div style={styles.skillCategory}>
+                <h4>Infrastructure & MLOps</h4>
+                <div style={styles.badgeGroup}>
+                  {resume.skills.mLOps.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
+                </div>
+              </div>
+              <div style={styles.skillCategory}>
+                <h4>Vector & Relational Databases</h4>
+                <div style={styles.badgeGroup}>
+                  {resume.skills.databases.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
+                </div>
+              </div>
+              <div style={styles.skillCategory}>
+                <h4>Testing & Quality Assurance</h4>
+                <div style={styles.badgeGroup}>
+                  {resume.skills.qaTesting.map((s, i) => <span key={i} style={styles.badge}>{s}</span>)}
+                </div>
+              </div>
             </div>
-          ))}
+          </section>
+
+          {/* Experience Section */}
+          <section style={styles.section}>
+            <h2 style={styles.sectionTitle}>Professional Experience</h2>
+            {resume.experience.map((exp, index) => (
+              <div key={index} style={styles.card}>
+                <div style={styles.cardHeader}>
+                  <h3>{exp.role} <span style={styles.company}>@ {exp.company}</span></h3>
+                  <span style={styles.date}>{exp.period}</span>
+                </div>
+                <ul style={styles.bulletList}>
+                  {exp.bullets.map((b, i) => <li key={i} style={styles.bulletItem}>{b}</li>)}
+                </ul>
+                {exp.links && (
+                  <div style={styles.repoLinks}>
+                    {exp.links.map((link) => (
+                      <a key={link.url} href={link.url} target="_blank" rel="noreferrer" style={styles.repoLink}>
+                        {link.label} ↗
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </section>
+
+          {/* Projects Section */}
+          <section style={styles.section}>
+            <h2 style={styles.sectionTitle}>Research & R&D Projects</h2>
+            <div style={styles.projectsGrid}>
+              {resume.projects.map((proj, index) => {
+                const ProjectCard = proj.url ? 'a' : 'div';
+
+                return (
+                  <ProjectCard
+                    key={index}
+                    style={styles.projectCard}
+                    {...(proj.url && {
+                      href: proj.url,
+                      target: "_blank",
+                      rel: "noreferrer"
+                    })}
+                  >
+                    <div style={styles.cardHeader}>
+                      <h3 style={styles.projectTitle}>{proj.title}</h3>
+                      <span style={styles.projectTag}>{proj.tag}</span>
+                    </div>
+                    <p style={styles.projectDesc}>{proj.description}</p>
+                  </ProjectCard>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Publications & Education */}
+          <div style={styles.twoColumnGrid}>
+            <section style={styles.section}>
+              <h2 style={styles.sectionTitle}>Publications</h2>
+              <ul style={styles.bulletList}>
+                {resume.publications.map((pub, i) => <li key={i} style={styles.bulletItem}><span style={styles.pubText}>{pub}</span></li>)}
+              </ul>
+            </section>
+
+            <section style={styles.section}>
+              <h2 style={styles.sectionTitle}>Education</h2>
+              {resume.education.map((edu, i) => (
+                <div key={i} style={{ marginBottom: '1rem' }}>
+                  <h4 style={{ margin: '0 0 0.25rem 0', color: '#f1f5f9' }}>{edu.degree}</h4>
+                  <p style={{ margin: 0, fontSize: '0.9rem', color: '#94a3b8' }}>{edu.school} ({edu.period})</p>
+                </div>
+              ))}
+            </section>
+          </div>
+        </>
+      )}
+
+      {activeTab === 'langgraph' && (
+        <section style={styles.guideSection}>
+          <div style={styles.guideEyebrow}>Türkçe dokümantasyon</div>
+          <h2 style={styles.guideTitle}>LangGraph Türkçe Rehberi</h2>
+          <p style={styles.guideDescription}>
+            LangGraph ile çoklu ajan sistemlerini ve akış tabanlı AI uygulamalarını Türkçe öğrenmek için hazırladığım rehber.
+          </p>
+          <a href="https://emineksknc.github.io/langgraph-turkce/" target="_blank" rel="noreferrer" style={styles.guideButton}>
+            Rehberi aç ↗
+          </a>
         </section>
-      </div>
+      )}
 
       <footer style={styles.footer}>
         <p>© 2026 {resume.name} — Built with React & Vite</p>
@@ -268,6 +318,31 @@ const styles = {
     gap: "1.25rem",
     alignItems: "center",
     flexWrap: "wrap"
+  },
+  navigation: {
+    display: "flex",
+    gap: "0.35rem",
+    padding: "0.35rem",
+    marginBottom: "3rem",
+    backgroundColor: "#111827",
+    border: "1px solid #1e293b",
+    borderRadius: "8px",
+    width: "fit-content"
+  },
+  navButton: {
+    border: "1px solid transparent",
+    borderRadius: "6px",
+    backgroundColor: "transparent",
+    color: "#94a3b8",
+    cursor: "pointer",
+    font: "inherit",
+    fontSize: "0.9rem",
+    padding: "0.65rem 1rem"
+  },
+  activeNavButton: {
+    backgroundColor: "#38bdf8",
+    color: "#082f49",
+    fontWeight: "700"
   },
   linkButton: {
     backgroundColor: "#1e293b",
@@ -391,6 +466,52 @@ const styles = {
     margin: "0.75rem 0 0 0",
     color: "#94a3b8",
     fontSize: "0.95rem"
+  },
+  repoLinks: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "0.75rem",
+    marginTop: "1.25rem"
+  },
+  repoLink: {
+    color: "#38bdf8",
+    fontSize: "0.9rem",
+    textDecoration: "none"
+  },
+  guideSection: {
+    backgroundColor: "#111827",
+    border: "1px solid #1e293b",
+    borderLeft: "4px solid #38bdf8",
+    borderRadius: "0 8px 8px 0",
+    padding: "2.5rem",
+    marginBottom: "3.5rem"
+  },
+  guideEyebrow: {
+    color: "#38bdf8",
+    fontSize: "0.8rem",
+    fontWeight: "700",
+    letterSpacing: "0.08em",
+    textTransform: "uppercase"
+  },
+  guideTitle: {
+    color: "#f8fafc",
+    fontSize: "2rem",
+    margin: "0.75rem 0"
+  },
+  guideDescription: {
+    color: "#cbd5e1",
+    fontSize: "1.05rem",
+    maxWidth: "650px",
+    margin: "0 0 1.5rem"
+  },
+  guideButton: {
+    display: "inline-block",
+    backgroundColor: "#38bdf8",
+    color: "#082f49",
+    borderRadius: "6px",
+    fontWeight: "700",
+    padding: "0.7rem 1rem",
+    textDecoration: "none"
   },
   twoColumnGrid: {
     display: "grid",
