@@ -77,6 +77,12 @@ function App() {
         title: "Multimedia Personal Data Categorization Solution (2022)",
         tag: "TUBITAK Supported",
         description: "Developed and integrated biometric recognition modules (signature, face, and fingerprint) including model training, optimization, and secure deployment."
+      },
+      {
+        title: "LangGraph Türkçe Rehberi",
+        tag: "Personal Project",
+        description: "LangGraph ile çoklu ajan sistemleri ve iş akışlarını Türkçe anlatan interaktif rehber.",
+        url: "https://emineksknc.github.io/langgraph-turkce/"
       }
     ],
 
@@ -167,15 +173,27 @@ function App() {
       <section style={styles.section}>
         <h2 style={styles.sectionTitle}>Research & R&D Projects</h2>
         <div style={styles.projectsGrid}>
-          {resume.projects.map((proj, index) => (
-            <div key={index} style={styles.projectCard}>
-              <div style={styles.cardHeader}>
-                <h3 style={styles.projectTitle}>{proj.title}</h3>
-                <span style={styles.projectTag}>{proj.tag}</span>
-              </div>
-              <p style={styles.projectDesc}>{proj.description}</p>
-            </div>
-          ))}
+          {resume.projects.map((proj, index) => {
+            const ProjectCard = proj.url ? 'a' : 'div';
+
+            return (
+              <ProjectCard
+                key={index}
+                style={styles.projectCard}
+                {...(proj.url && {
+                  href: proj.url,
+                  target: "_blank",
+                  rel: "noreferrer"
+                })}
+              >
+                <div style={styles.cardHeader}>
+                  <h3 style={styles.projectTitle}>{proj.title}</h3>
+                  <span style={styles.projectTag}>{proj.tag}</span>
+                </div>
+                <p style={styles.projectDesc}>{proj.description}</p>
+              </ProjectCard>
+            );
+          })}
         </div>
       </section>
 
@@ -351,7 +369,10 @@ const styles = {
     borderRadius: "0 8px 8px 0",
     borderTop: "1px solid #1e293b",
     borderRight: "1px solid #1e293b",
-    borderBottom: "1px solid #1e293b"
+    borderBottom: "1px solid #1e293b",
+    color: "inherit",
+    display: "block",
+    textDecoration: "none"
   },
   projectTitle: {
     margin: "0",
