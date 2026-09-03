@@ -69,9 +69,10 @@
       background: rgba(15, 19, 25, .82);
       backdrop-filter: blur(14px);
       padding: 32px 24px;
-      position: sticky;
+      position: fixed;
       top: 0;
       height: 100vh;
+      left: 0;
       display: flex;
       flex-direction: column;
     }
@@ -148,6 +149,159 @@
       border-top: 1px solid var(--line);
     }
 
+    .useful-links {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      margin-top: 18px;
+    }
+
+    .hero .useful-links {
+      position: fixed;
+      right: 32px;
+      top: 32px;
+      bottom: 32px;
+      width: 260px;
+      margin-top: 0;
+      padding: 0;
+      border-top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    @media (max-width: 1200px) and (min-width: 861px) {
+      .hero .useful-links {
+        right: 20px;
+        width: 220px;
+      }
+    }
+
+    .useful-links-title {
+      color: var(--teal);
+      font-family: 'JetBrains Mono';
+      font-size: 10px;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .useful-link-card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      margin-bottom: 7px;
+      padding: 9px 10px;
+      transition: .15s;
+    }
+
+    .useful-link-card:hover {
+      background: var(--surface-hi);
+      border-color: var(--teal);
+      transform: translateX(2px);
+    }
+
+    .useful-link-name {
+      color: var(--text);
+      display: block;
+      font-family: 'Space Grotesk';
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .useful-link-meta {
+      color: var(--muted);
+      display: block;
+      font-family: 'JetBrains Mono';
+      font-size: 9px;
+    }
+
+    .useful-link-status {
+      color: var(--amber);
+    }
+
+    .research-links {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+
+    .research-source {
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+    }
+
+    .research-source:last-of-type {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .sub-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 8px 0 16px;
+      padding: 0;
+    }
+
+    .sub-links:empty {
+      display: none;
+    }
+
+    .sub-link {
+      color: var(--text);
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-family: 'Space Grotesk';
+      font-size: 12.5px;
+      line-height: 1.35;
+      padding: 10px 11px;
+      overflow-wrap: anywhere;
+      transition: .15s;
+    }
+
+    .sub-link:hover {
+      color: var(--teal);
+      background: var(--surface-hi);
+      border-color: var(--teal);
+      transform: translateX(2px);
+    }
+
+    .research-links .publication-link {
+      color: var(--text);
+      font-size: 12.5px;
+    }
+
+    .research-links .publication-link:hover {
+      color: var(--teal);
+    }
+
+    .research-tag {
+      display: block;
+      color: var(--muted);
+      font-family: 'JetBrains Mono';
+      font-size: 8.5px;
+      letter-spacing: .02em;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+
+    .medium-label {
+      color: var(--muted);
+      font-family: 'JetBrains Mono';
+      font-size: 10px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .publication-link {
+      font-size: 11px;
+    }
+
     .socials a {
       color: var(--muted);
       font-size: 12.5px;
@@ -160,6 +314,7 @@
     main {
       flex: 1;
       min-width: 0;
+      margin-left: 240px;
     }
 
     section {
@@ -729,17 +884,73 @@
     }
 
     footer {
+      position: relative;
       padding: 40px 64px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 13px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      transition: .15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--teal);
+    }
+
+    .footer-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 22px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--text);
+      font-family: 'JetBrains Mono';
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .footer-icon svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+
+    .footer-icon svg.stroke-icon {
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
     }
 
     @media (max-width:860px) {
       .sidebar {
         display: none;
+      }
+
+      main {
+        margin-left: 0;
       }
 
       section {
@@ -748,6 +959,16 @@
 
       .hero {
         padding: 24px;
+      }
+
+      .hero .useful-links {
+        position: relative;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 44px;
+        transform: none;
       }
 
       .hero h1 {
@@ -764,6 +985,13 @@
         padding: 32px 24px;
         flex-direction: column;
         gap: 8px;
+        align-items: flex-start;
+      }
+
+      .footer-links {
+        position: static;
+        transform: none;
+        flex-wrap: wrap;
       }
     }
 
@@ -788,6 +1016,7 @@
       #graph-canvas,
       .hero-tags,
       .btn,
+      .useful-links,
       .socials,
       .job-links {
         display: none !important;
@@ -844,10 +1073,10 @@
 
   <div class="shell">
     <aside class="sidebar">
-      <div class="brand">
+      <a class="brand" href="#hero" aria-label="Go to homepage">
         <div class="brand-node">EK</div>
         <div class="brand-name">emine.dev</div>
-      </div>
+      </a>
       <nav>
         <a href="#hero"><span class="dot"></span>Summary</a>
         <a href="#skills"><span class="dot"></span>Skills</a>
@@ -860,12 +1089,6 @@
         <a href="#publications"><span class="dot"></span>Publications</a>
         <a href="#contact"><span class="dot"></span>Contact</a>
       </nav>
-      <div class="socials" id="sidebar-socials">
-        <a href="#" id="social-linkedin">LinkedIn</a>
-        <a href="#" id="social-github">GitHub</a>
-        <a href="#" id="social-medium">Medium</a>
-        <a href="#" id="social-scholar">Scholar</a>
-      </div>
     </aside>
 
     <main>
@@ -893,6 +1116,21 @@
           <a href="#contact" class="btn">Get in touch</a>
           <a href="Emine-Kiskanc-CV.pdf" id="cv-download-btn" class="btn btn-outline" download>Download CV</a>
         </div>
+        <aside class="useful-links" aria-label="Useful links">
+          <div class="useful-links-title">Useful Links</div>
+          <a class="useful-link-card" href="https://emineksknc.github.io/langgraph-turkce/" target="_blank" rel="noreferrer">
+            <span class="useful-link-name">LangGraph Türkçe ↗</span>
+            <span class="useful-link-meta useful-link-status">Published guide</span>
+          </a>
+          <div class="research-links">
+            <div class="useful-links-title">Articles</div>
+            <div class="sub-links" id="medium-sub-links" aria-label="Latest Medium articles"></div>
+            <div class="sub-links">
+              <a class="sub-link publication-link" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=tr&amp;user=5mqf99UAAAAJ&amp;citation_for_view=5mqf99UAAAAJ:d1gkVwhDpl0C" target="_blank" rel="noreferrer">Classifying the Tone of Voice of Digital Marketing Text Messages Using Machine Learning Methods ↗<span class="research-tag">Research paper · 2023</span></a>
+              <a class="sub-link publication-link" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=tr&amp;user=5mqf99UAAAAJ&amp;citation_for_view=5mqf99UAAAAJ:u-x6o8ySG0sC" target="_blank" rel="noreferrer">Bilgi Çıkarımı İçin Belge Düzeni Çözümleme Yöntemleri ↗<span class="research-tag">Book chapter · 2022</span></a>
+            </div>
+          </div>
+        </aside>
       </section>
 
       <section id="skills">
@@ -1011,18 +1249,10 @@
         <div class="edu-card">
           <h3>Harran University — M.Sc. Computer Engineering</h3>
           <div class="meta">2019 — 2022 · not completed</div>
-          <div class="course-tags">
-            <span>Super Resolution</span>
-            <span><!-- TODO: yüksek lisans dersleri --></span>
-          </div>
         </div>
         <div class="edu-card">
           <h3>Çukurova University — B.Sc. Computer Engineering</h3>
           <div class="meta">2014 — 2019</div>
-          <div class="course-tags">
-            <span>Thesis: <!-- TODO: bitirme tezi konusu --></span>
-            <span><!-- TODO: lisans dersleri --></span>
-          </div>
         </div>
       </section>
 
@@ -1137,7 +1367,12 @@
 
       <footer>
         <span>© 2026 Emine Kıskanç</span>
-        <span id="footer-email"></span>
+        <div class="footer-links" aria-label="Social links">
+          <a href="#" id="social-linkedin" aria-label="LinkedIn"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 8.5H3.8V20h2.7V8.5ZM5.15 4A1.6 1.6 0 1 0 5.15 7.2 1.6 1.6 0 0 0 5.15 4ZM20.2 13.4c0-3.47-1.85-5.08-4.32-5.08-1.99 0-2.88 1.1-3.38 1.87V8.5H9.8V20h2.7v-5.7c0-1.5.28-2.95 2.14-2.95 1.83 0 1.85 1.72 1.85 3.05V20h2.7v-6.6Z"/></svg></span><span>LinkedIn</span></a>
+          <a href="#" id="social-scholar" aria-label="Google Scholar"><span class="footer-icon" aria-hidden="true"><svg class="stroke-icon" viewBox="0 0 24 24"><path d="m3 10 9-5 9 5-9 5-9-5Z"/><path d="M7 12.3V16c2.8 2.3 7.2 2.3 10 0v-3.7M21 10v6"/></svg></span><span>Scholar</span></a>
+          <a href="#" id="social-medium" aria-label="Medium"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5h16v11H4v-11Zm3.2 2.1v6.8h1.1V9.9l2.8 5.5h.8l2.7-5.5v5.5h1.2V8.6h-1.7l-2.6 5.3-2.7-5.3H7.2Z"/></svg></span><span>Medium</span></a>
+          <a href="#" id="social-github" aria-label="GitHub"><span class="footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-2.7 16.56c.43.08.58-.19.58-.41v-1.6c-2.36.51-2.86-1-2.86-1-.39-.99-.95-1.25-.95-1.25-.77-.53.06-.52.06-.52.85.06 1.3.87 1.3.87.75 1.29 1.97.92 2.45.7.08-.54.29-.92.53-1.13-1.88-.21-3.86-.94-3.86-4.19 0-.93.33-1.69.87-2.28-.09-.21-.38-1.08.08-2.25 0 0 .71-.23 2.34.87a8.2 8.2 0 0 1 4.26 0c1.63-1.1 2.34-.87 2.34-.87.46 1.17.17 2.04.08 2.25.54.59.87 1.35.87 2.28 0 3.26-1.98 3.98-3.87 4.19.3.26.56.76.56 1.54v2.29c0 .22.15.49.59.41A8.5 8.5 0 0 0 12 3.5Z"/></svg></span><span>GitHub</span></a>
+        </div>
       </footer>
     </main>
   </div>
@@ -1162,12 +1397,9 @@
     function wireStaticLinks() {
       document.getElementById('social-linkedin').href = CONFIG.linkedin || '#';
       document.getElementById('social-github').href = `https://github.com/${CONFIG.github}`;
-      document.getElementById('social-medium').href = CONFIG.medium ? `https://medium.com/@${CONFIG.medium}` : '#';
-      document.getElementById('social-scholar').href = CONFIG.scholar || '#';
 
       document.getElementById('contact-email').href = `mailto:${CONFIG.email}`;
       document.getElementById('contact-linkedin').href = CONFIG.linkedin || '#';
-      document.getElementById('footer-email').textContent = CONFIG.email;
 
       const cvBtn = document.getElementById('cv-download-btn');
       if (CONFIG.cvDownloadUrl) {
@@ -1259,12 +1491,17 @@
     </div>`;
     }
 
+    function renderMediumSubLink(item) {
+      return `<a class="sub-link" href="${item.link}" target="_blank" rel="noreferrer">${item.title} ↗<span class="research-tag">Medium article</span></a>`;
+    }
+
     function fallbackMediumHTML() {
       return `<p class="status-line">Add a Medium username in CONFIG to show live posts here.</p>`;
     }
 
     async function loadMedium() {
       const container = document.getElementById('medium-posts');
+      const submenu = document.getElementById('medium-sub-links');
       if (!CONFIG.medium) { container.innerHTML = fallbackMediumHTML(); return; }
       try {
         const rssUrl = `https://medium.com/feed/@${CONFIG.medium}`;
@@ -1273,7 +1510,9 @@
         const data = await res.json();
         console.log('rss2json response:', data);
         if (data.status !== 'ok' || !data.items?.length) throw new Error(`No items returned (status: ${data.status}, message: ${data.message || 'n/a'})`);
-        container.innerHTML = data.items.slice(0, 3).map(renderMediumItem).join('');
+        const latestItems = data.items.slice(0, 3);
+        container.innerHTML = latestItems.map(renderMediumItem).join('');
+        submenu.innerHTML = latestItems.map(renderMediumSubLink).join('');
       } catch (e) {
         console.warn('Medium fetch failed:', e);
         container.innerHTML = `<p class="status-line">Live posts could not be loaded right now. Showing fallback content.</p>`;
