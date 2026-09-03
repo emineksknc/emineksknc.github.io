@@ -1,0 +1,23 @@
+{
+  "nowLearning": [
+    {
+      "text": "PostgreSQL",
+      "source": "via [kaynak adı eklenecek]",
+      "status": "in progress"
+    },
+    {
+      "text": "Qwen model migration for DAN's local agents",
+      "status": "in progress"
+    },
+    {
+      "text": "LangGraph multi-agent orchestration patterns",
+      "status": "in progress"
+    }
+  ],
+  "currentlyReading": [
+    {
+      "text": "[book / article title to be added]",
+      "status": "placeholder"
+    }
+  ]
+}
